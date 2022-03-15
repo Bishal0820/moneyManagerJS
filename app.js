@@ -48,17 +48,7 @@ const accountTwo = {
 
 const accounts = [accountOne, accountTwo];
 
-// const username = (accounts) => {
-//   accounts.forEach((account) => {
-//   account.username = account.owner
-//   .toLowerCase()
-// .split(' ')
-// .map((name) => name[0])
-// .join('')
-// })
-// }
 
-// username(accounts)
 
 // accounts.forEach((account) => {
 //   account.username = account.owner
@@ -99,6 +89,18 @@ const [,{movements}] = accounts;
 //   containerMovements.insertAdjacentHTML('afterbegin',html);
 // })
 
+const username = (accounts) => {
+  accounts.forEach((account) => {
+  account.username = account.owner
+  .toLowerCase()
+.split(' ')
+.map((name) => name[0])
+.join('')
+})
+}
+
+
+
 const displayMovements = (movements) => {
   movements.forEach(function(mov,i){
   const type= mov > 0 ? 'deposit' : 'withdrawal';
@@ -113,8 +115,6 @@ const displayMovements = (movements) => {
   })
 }
 
-
-
 const displayBalance = (movements) => {
   labelBalance.textContent=`${movements.reduce((acc,movement) => acc+movement,0)}€`
 } 
@@ -122,13 +122,19 @@ const displayBalance = (movements) => {
 console.log(movements.filter((movement) => movement < 0))
 
 const getInAndOut = (movements) => {
-  const inValue = movements.filter((movement) => movement > 0)
-  labelSumIn.textContent = `${inValue.reduce((acc,mov) => acc + mov, 0)}€`;
-  const outValue = movements.filter((movement) => movement < 0)
-  labelSumOut.textContent = `${outValue.reduce((acc,mov) => acc + mov, 0)}€`;
+  const inValue = movements
+    .filter((movement) => movement > 0)
+    .reduce((acc,mov) => acc + mov, 0);  
+  
+  const outValue = movements
+    .filter((movement) => movement < 0)
+    .reduce((acc,mov) => acc + mov, 0);
+  
+  labelSumIn.textContent = `${inValue}€`;
+  labelSumOut.textContent = `${outValue}€`;
 }
 
-
+username(accounts)
 displayMovements(movements)
 displayBalance(movements)
 getInAndOut(movements)
