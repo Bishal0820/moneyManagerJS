@@ -48,6 +48,18 @@ const accountTwo = {
 
 const accounts = [accountOne, accountTwo];
 
+accounts.forEach((account) => {
+  account.username = account.owner
+  .toLowerCase()
+.split(' ')
+.map((name) => name[0])
+.join('')
+})
+
+console.log(accountOne);
+console.log(accountTwo);
+
+
 const [{movements}] = accounts;
 
 // console.log(accountOne.movements);
