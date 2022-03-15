@@ -113,12 +113,22 @@ const displayMovements = (movements) => {
   })
 }
 
-displayMovements(movements)
+
 
 const displayBalance = (movements) => {
   labelBalance.textContent=`${movements.reduce((acc,movement) => acc+movement,0)}€`
 } 
 
-displayBalance(movements)
+console.log(movements.filter((movement) => movement < 0))
 
-console.log(movements.filter((movement) => movement > 0))
+const getInAndOut = (movements) => {
+  const inValue = movements.filter((movement) => movement > 0)
+  labelSumIn.textContent = `${inValue.reduce((acc,mov) => acc + mov, 0)}€`;
+  const outValue = movements.filter((movement) => movement < 0)
+  labelSumOut.textContent = `${outValue.reduce((acc,mov) => acc + mov, 0)}€`;
+}
+
+
+displayMovements(movements)
+displayBalance(movements)
+getInAndOut(movements)
