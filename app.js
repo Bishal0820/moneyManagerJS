@@ -41,29 +41,41 @@ const userName = accountOne.owner
 console.log('username = ', userName)
 const accountTwo = {
   owner: 'Mokshada Upreti',
-  movements: [1000, -600],
+  movements: [1000, -600,202,600,400,-400],
   interrestRate: 1.1,
   pin: 2222,
 };
 
 const accounts = [accountOne, accountTwo];
 
-accounts.forEach((account) => {
-  account.username = account.owner
-  .toLowerCase()
-.split(' ')
-.map((name) => name[0])
-.join('')
-})
+// const username = (accounts) => {
+//   accounts.forEach((account) => {
+//   account.username = account.owner
+//   .toLowerCase()
+// .split(' ')
+// .map((name) => name[0])
+// .join('')
+// })
+// }
 
-console.log(accountOne);
-console.log(accountTwo);
+// username(accounts)
+
+// accounts.forEach((account) => {
+//   account.username = account.owner
+//   .toLowerCase()
+// .split(' ')
+// .map((name) => name[0])
+// .join('')
+// })
+
+// console.log(accountOne);
+// console.log(accountTwo);
 
 
-const [{movements}] = accounts;
+const [,{movements}] = accounts;
 
 // console.log(accountOne.movements);
-console.log(movements);
+// console.log(movements);
 
 // movements.forEach(function(movement, i) {
 //   console.log(`Index ${i} of value: ${movement}`)
@@ -73,9 +85,22 @@ console.log(movements);
 
 // console.log(movementsTwo);
 
-movements.forEach(function(mov,i){
+// movements.forEach(function(mov,i){
 
-  console.log(mov)
+//   console.log(mov)
+//   const type= mov > 0 ? 'deposit' : 'withdrawal';
+//   const html=`<div class="movements__row">
+//           <div class="movements__type movements__type--${type}">
+//             ${i+1} ${type}
+//           </div>
+//           <!-- <div class="movements__date">24/01/2037</div> -->
+//           <div class="movements__value">${mov}€</div>
+//         </div>`;
+//   containerMovements.insertAdjacentHTML('afterbegin',html);
+// })
+
+const displayMovements = (movements) => {
+  movements.forEach(function(mov,i){
   const type= mov > 0 ? 'deposit' : 'withdrawal';
   const html=`<div class="movements__row">
           <div class="movements__type movements__type--${type}">
@@ -85,5 +110,15 @@ movements.forEach(function(mov,i){
           <div class="movements__value">${mov}€</div>
         </div>`;
   containerMovements.insertAdjacentHTML('afterbegin',html);
-})
+  })
+}
 
+displayMovements(movements)
+
+const displayBalance = (movements) => {
+  labelBalance.textContent=`${movements.reduce((acc,movement) => acc+movement,0)}€`
+} 
+
+displayBalance(movements)
+
+console.log(movements.filter((movement) => movement > 0))
