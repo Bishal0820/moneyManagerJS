@@ -141,9 +141,10 @@ const getInAndOut = (movements, interestRate) => {
   labelSumInterest.textContent = `${interest}€`;
 }
 
-username(accounts)
+
 function onClick(a) { 
   a.preventDefault();
+  username(accounts)
   const userName=inputLoginUsername.value;
   const pinNumber=inputLoginPin.value;
   const currentAccount = accounts.find((account)=>account.pin===+pinNumber & account.username===userName);
@@ -155,8 +156,3 @@ function onClick(a) {
 }
 
 btnLogin.addEventListener('click',onClick);
-// username(accounts)
-// displayMovements(movements)
-// displayBalance(movements)
-// getInAndOut(movements,interestRate)
-// btnLogin.addEventListener('click',onClick);
