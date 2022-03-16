@@ -144,19 +144,16 @@ const getInAndOut = (movements, interestRate) => {
 username(accounts)
 function onClick(a) { 
   a.preventDefault();
-  const currentAccount = accounts.find((account)=>account.pin===+pinNumber & account.username===userName);
-  labelWelcome.textContent='Welcome ${currentAccount.owner}';
-  //inputLoginUsername.hide
   const userName=inputLoginUsername.value;
   const pinNumber=inputLoginPin.value;
-  
-  console.log(currentAccount);
-  
-displayMovements(currentAccount.movements)
-displayBalance(currentAccount.movements)
-getInAndOut(currentAccount.movements,currentAccount.interestRate)
-
+  const currentAccount = accounts.find((account)=>account.pin===+pinNumber & account.username===userName);
+  labelWelcome.textContent=`Welcome ${currentAccount.owner}`;  
+  console.log(currentAccount);  
+  displayMovements(currentAccount.movements)
+  displayBalance(currentAccount.movements)
+  getInAndOut(currentAccount.movements,currentAccount.interestRate)
 }
+
 btnLogin.addEventListener('click',onClick);
 // username(accounts)
 // displayMovements(movements)
