@@ -146,5 +146,4 @@ username(accounts)
 displayMovements(movements)
 displayBalance(movements)
 getInAndOut(movements,interestRate)
-
-console.log(btnLogin.addEventListener('click',(a)=>console.log('Hello')))
+btnLogin.addEventListener('click',(a)=>console.log('Hello'))
