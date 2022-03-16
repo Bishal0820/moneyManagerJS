@@ -27,7 +27,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const accountOne = {
   owner: 'Bishal Paudel',
   movements: [200, -300, 400, 800, 300],
-  interrestRate: 1.5,
+  interestRate: 1.5,
   pin: 1234,
 };
 
@@ -42,7 +42,7 @@ console.log('username = ', userName)
 const accountTwo = {
   owner: 'Mokshada Upreti',
   movements: [1000, -600,202,600,400,-400],
-  interrestRate: 1.1,
+  interestRate: 1.1,
   pin: 2222,
 };
 
@@ -62,7 +62,7 @@ const accounts = [accountOne, accountTwo];
 // console.log(accountTwo);
 
 
-const [,{movements}] = accounts;
+const [,{movements,interestRate}] = accounts;
 
 // console.log(accountOne.movements);
 // console.log(movements);
@@ -121,7 +121,8 @@ const displayBalance = (movements) => {
 
 console.log(movements.filter((movement) => movement < 0))
 
-const getInAndOut = (movements) => {
+const getInAndOut = (movements, interestRate) => {
+  
   const inValue = movements
     .filter((movement) => movement > 0)
     .reduce((acc,mov) => acc + mov, 0);  
@@ -129,12 +130,21 @@ const getInAndOut = (movements) => {
   const outValue = movements
     .filter((movement) => movement < 0)
     .reduce((acc,mov) => acc + mov, 0);
+
+  const interest = movements
+     .filter((move)=>move>0)
+     .map((deposite)=>+(deposite*(interestRate / 100)).toFixed(2))
+     .reduce((acc,mov) => acc + mov, 0);
   
   labelSumIn.textContent = `${inValue}€`;
   labelSumOut.textContent = `${outValue}€`;
+  labelSumInterest.textContent = `${interest}€`;
 }
+
 
 username(accounts)
 displayMovements(movements)
 displayBalance(movements)
-getInAndOut(movements)
+getInAndOut(movements,interestRate)
+
+console.log(btnLogin.addEventListener('click',(a)=>console.log('Hello')))
