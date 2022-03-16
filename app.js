@@ -43,7 +43,7 @@ const accountTwo = {
   owner: 'Mokshada Upreti',
   movements: [1000, -600,202,600,400,-400],
   interestRate: 1.1,
-  pin: 2222,
+  pin: 1602,
 };
 
 const accounts = [accountOne, accountTwo];
@@ -141,9 +141,25 @@ const getInAndOut = (movements, interestRate) => {
   labelSumInterest.textContent = `${interest}€`;
 }
 
-
 username(accounts)
-displayMovements(movements)
-displayBalance(movements)
-getInAndOut(movements,interestRate)
-btnLogin.addEventListener('click',(a)=>console.log('Hello'))
+function onClick(a) { 
+  a.preventDefault();
+  const currentAccount = accounts.find((account)=>account.pin===+pinNumber & account.username===userName);
+  labelWelcome.textContent='Welcome ${currentAccount.owner}';
+  //inputLoginUsername.hide
+  const userName=inputLoginUsername.value;
+  const pinNumber=inputLoginPin.value;
+  
+  console.log(currentAccount);
+  
+displayMovements(currentAccount.movements)
+displayBalance(currentAccount.movements)
+getInAndOut(currentAccount.movements,currentAccount.interestRate)
+
+}
+btnLogin.addEventListener('click',onClick);
+// username(accounts)
+// displayMovements(movements)
+// displayBalance(movements)
+// getInAndOut(movements,interestRate)
+// btnLogin.addEventListener('click',onClick);
